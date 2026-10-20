@@ -71,7 +71,7 @@ Run: `npm install`
 
 In `package.json` `"scripts"` add:
 ```json
-    "test": "node --test src/lib/",
+    "test": "node --test \"src/lib/*.test.js\"",
     "gen:scene": "node scripts/gen-scene.mjs"
 ```
 
