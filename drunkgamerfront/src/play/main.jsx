@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import "../styles/tokens.css";
 import "../styles/pixel.css";
 import "../styles/play.css";
+import "../styles/play-deck.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

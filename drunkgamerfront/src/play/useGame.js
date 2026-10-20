@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import cards from "../data/cards.json";
 import { addPlayer, dealCard, newGame, removePlayer } from "../lib/engine.js";
 
 const KEY = "drunkgamer:game";
@@ -51,8 +50,9 @@ export function useGame() {
       return true;
     },
     removePlayer: (id) => update((g) => removePlayer(g, id)),
-    nextCard: () => {
+    nextCard: (cards) => {
       if (!game?.players.length) return setError("Add at least one player first.");
+      if (!cards.length) return setError("Your deck is empty. Add some cards in the DECK tab.");
       update((g) => dealCard(g, cards));
     },
     reset: () => update(() => null),
