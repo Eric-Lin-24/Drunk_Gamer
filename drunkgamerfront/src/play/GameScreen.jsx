@@ -1,13 +1,13 @@
 import GameCard from "./GameCard.jsx";
 import { avatarColor } from "../lib/categories.js";
-import { groupRules, playerId, rulesForPlayer, turnIndex } from "../lib/turn.js";
+import { groupRules, playerId, roundOf, rulesForPlayer, turnIndex } from "../lib/turn.js";
 
-export default function GameScreen({ room, players, loading, error, onNext, onReset }) {
+export default function GameScreen({ room, players, error, onNext, onReset }) {
   const rules = room?.activeRules || [];
   const group = groupRules(rules);
   const turn = turnIndex(players.length, room?.cardCounter);
   const current = players[turn];
-  const round = room?.currentRound || 1;
+  const round = roundOf(players.length, room?.cardCounter);
 
   return (
     <div className="game">
@@ -54,10 +54,8 @@ export default function GameScreen({ room, players, loading, error, onNext, onRe
         <p className="kick table__turn"><span className="table__round">ROUND {round} · </span>{(current?.name || "—").toUpperCase()}'S TURN</p>
         <GameCard key={room?.currentCard?.shownAt || "empty"} card={room?.currentCard} dealt={Number(room?.cardCounter || 0)} />
         <div className="table__acts">
-          <button className="btn btn--ghost table__reset" onClick={onReset} disabled={loading}>RESET</button>
-          <button className="btn table__next" onClick={onNext} disabled={loading || players.length === 0}>
-            {loading ? "DEALING…" : "NEXT CARD ▶"}
-          </button>
+          <button className="btn btn--ghost table__reset" onClick={onReset}>RESET</button>
+          <button className="btn table__next" onClick={onNext} disabled={players.length === 0}>NEXT CARD ▶</button>
         </div>
         {error && <p className="err" role="alert">⚠ {error}</p>}
       </main>

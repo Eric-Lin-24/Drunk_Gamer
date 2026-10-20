@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { playersInGame, playerId, turnIndex, rulesForPlayer, groupRules } from "./turn.js";
+import { playersInGame, playerId, turnIndex, roundOf, rulesForPlayer, groupRules } from "./turn.js";
 
 const room = { players: [{ id: "h", name: "Host" }, { id: "a", name: "Jake" }, { playerId: "b", name: "Sofia" }] };
 
@@ -31,4 +31,12 @@ test("rule selectors split person and group rules", () => {
   assert.deepEqual(rulesForPlayer(rules, "a").map((r) => r.ruleId), ["1"]);
   assert.deepEqual(groupRules(rules).map((r) => r.ruleId), ["2"]);
   assert.deepEqual(groupRules(undefined), []);
+});
+
+test("roundOf: the round of the card on screen, starting at 1", () => {
+  assert.equal(roundOf(3, 0), 1);
+  assert.equal(roundOf(3, 1), 1);
+  assert.equal(roundOf(3, 3), 1);
+  assert.equal(roundOf(3, 4), 2);
+  assert.equal(roundOf(0, 4), 1);
 });

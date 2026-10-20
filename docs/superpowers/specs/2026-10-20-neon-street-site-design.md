@@ -111,3 +111,14 @@ Player avatar colour = cycle `[pink, cyan, amber, violet, lime, orange]` by join
 ## 8. Out of scope
 
 Sound, settings menu, multi-device rooms, new cards, backend changes, analytics.
+
+## 9. Amendment — no AWS (2026-10-20)
+
+The AWS API Gateway no longer exists, and AWS is dropped entirely. The game now runs fully in the browser:
+
+- `src/lib/engine.js` — pure port of the Lambda's deck/turn/round/rule logic (`newGame`, `addPlayer`, `removePlayer`, `dealCard`, `shuffle`), unit-tested.
+- `src/data/cards.json` — the 310 cards, bundled with the front end.
+- `src/play/useGame.js` replaces `useRoom.js`; the game is saved in `localStorage` (`drunkgamer:game`) and resumes after reload.
+- `api.js`, `.env.production` and the CORS note in §4 are removed. The site is static files only on Cloudflare Pages.
+- Displayed round uses `roundOf()` (the engine's counter ticks over as the last player's card is dealt).
+- `backend/` is now unused.
