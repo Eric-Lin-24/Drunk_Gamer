@@ -1,0 +1,8 @@
+{
+  // Static site: Cloudflare serves the Vite build output, no Worker script.
+  "name": "drunk-gamer",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}
