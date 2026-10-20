@@ -1,0 +1,40 @@
+:root {
+  --ink: #0b0a12;
+  --bg2: #0f0d18;
+  --panel: #14111f;
+  --line: #2b2540;
+  --text: #ece8f7;
+  --dim: #8f8aa6;
+  --pink: #ff2e88;
+  --cyan: #00e5ff;
+  --amber: #ffd36b;
+  --violet: #b07cff;
+  --lime: #7dff6b;
+  --orange: #ff9a3c;
+
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 40px;
+  --s5: 64px;
+
+  --f-display: "Pixelify Sans", ui-monospace, monospace;
+  --f-press: "Press Start 2P", ui-monospace, monospace;
+  --f-label: "Silkscreen", ui-monospace, monospace;
+  --f-body: "VT323", ui-monospace, monospace;
+
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; background: var(--ink); color: var(--text); }
+body { font-family: var(--f-body); font-size: 21px; line-height: 1.2; -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+
+:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
