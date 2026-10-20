@@ -2,12 +2,66 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>drunkgamerfront</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Drunk Gamer · the pass-the-phone party card game</title>
+    <meta name="description" content="310 cards of dares, truths and rules that stick around. One phone, any crowd. Free, no app needed." />
+    <meta property="og:title" content="Drunk Gamer" />
+    <meta property="og:description" content="310 cards · one phone · pass it round and do what it says." />
+    <meta name="theme-color" content="#0b0a12" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&family=Press+Start+2P&family=Silkscreen&family=VT323&display=swap" />
+    <script type="module" src="/src/landing.js"></script>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <header class="hero scan">
+      <img class="hero__scene" src="/scene.svg" alt="" />
+      <div class="hero__head">
+        <h1 class="px-title hero__title">DRUNK GAMER</h1>
+        <p class="kick hero__kick">LAST CALL · EVERY ROUND</p>
+        <p class="vt hero__tag">310 cards · one phone · pass it round and do what it says</p>
+      </div>
+      <div class="hero__street" aria-hidden="true"></div>
+      <div class="hero__under">
+        <div class="hero__controls">
+          <div class="row"><span class="grp"><a class="chip" href="#how">▸ HOW TO PLAY</a><span class="tag" style="background:var(--pink)">BETA</span></span></div>
+          <a class="btn hero__play" href="/play/"><span aria-hidden="true">▶</span>DEAL ME IN<span aria-hidden="true">◀</span></a>
+          <div class="row hero__foot">
+            <span class="hero__round">ROUND #01</span>
+            <span class="grp"><span class="chip">DARES</span><span class="chip">TRUTHS</span><span class="chip">CHAOS</span></span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="land">
+      <section id="how" class="sec">
+        <div class="sec__head"><p class="kick">HOW IT WORKS</p><h2 class="px-title sec__title">THREE STEPS. NO SETUP.</h2></div>
+        <ol class="steps">
+          <li class="box step"><span class="step__n">01</span><h3 class="step__h">ADD YOUR CREW</h3><p class="vt">Type in everyone's name, in the order you're sitting. Nobody downloads anything.</p></li>
+          <li class="box step"><span class="step__n">02</span><h3 class="step__h">DEAL A CARD</h3><p class="vt">The phone shows whose turn it is. Read the card out loud and do what it says.</p></li>
+          <li class="box step"><span class="step__n">03</span><h3 class="step__h">RULES STICK</h3><p class="vt">Some cards set rules that last a few rounds. The game tracks them so you don't have to.</p></li>
+        </ol>
+      </section>
+
+      <section class="sec">
+        <div class="sec__head"><p class="kick">THE DECK</p><h2 class="px-title sec__title">310 CARDS. 6 FLAVOURS.</h2></div>
+        <ul class="deck">
+          <li class="box mini" style="--c:var(--pink)"><span class="tag">CHAOS</span><h3 class="mini__t">EYE CONTACT DUEL</h3><p class="vt mini__d">Pick someone. First to look away drinks.</p></li>
+          <li class="box mini" style="--c:var(--amber)"><span class="tag">DARE</span><h3 class="mini__t">DANCE TAX</h3><p class="vt mini__d">Point at someone. They dance or drink.</p></li>
+          <li class="box mini" style="--c:var(--orange)"><span class="tag">RULE · 1R</span><h3 class="mini__t">NO SMILING</h3><p class="vt mini__d">No smiling for one round. First to smile drinks.</p></li>
+          <li class="box mini" style="--c:var(--cyan)"><span class="tag">TRUTH</span><h3 class="mini__t">WORST DATE</h3><p class="vt mini__d">Tell your worst date story.</p></li>
+        </ul>
+      </section>
+
+      <section class="cta">
+        <h2 class="px-title cta__title">READY WHEN YOU ARE.</h2>
+        <p class="vt">Drink responsibly. Water counts too.</p>
+        <a class="btn cta__btn" href="/play/"><span aria-hidden="true">▶</span>DEAL ME IN</a>
+      </section>
+    </main>
+
+    <footer class="foot"><span>DRUNK GAMER</span><span>18+ · PLAY RESPONSIBLY</span></footer>
   </body>
 </html>
