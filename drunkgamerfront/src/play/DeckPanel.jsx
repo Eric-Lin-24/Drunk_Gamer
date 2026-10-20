@@ -70,7 +70,7 @@ export default function DeckPanel({ deck }) {
       <div className="deck__reset">
         {confirmReset ? (
           <>
-            <span className="vt deck__confirm">Put every card back to ×1, undo edits and delete your own cards?</span>
+            <span className="vt deck__confirm">Put every card back to its default count, undo edits and delete your own cards?</span>
             <button className="btn btn--ghost deck__rbtn" onClick={() => setConfirmReset(false)}>KEEP</button>
             <button className="btn deck__rbtn deck__danger" onClick={() => { deck.reset(); setConfirmReset(false); }}>RESET</button>
           </>

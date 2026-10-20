@@ -37,7 +37,9 @@ export function dealCard(game, cards, options = {}) {
   const ids = cards.map((c) => c.id);
   let deckOrder = game.deckOrder;
   let deckPos = game.deckPos || 0;
-  if (!Array.isArray(deckOrder) || deckOrder.length !== ids.length || deckPos >= deckOrder.length) {
+  const known = new Set(ids);
+  const stale = !Array.isArray(deckOrder) || deckOrder.length !== ids.length || !deckOrder.every((id) => known.has(id));
+  if (stale || deckPos >= deckOrder.length) {
     deckOrder = shuffle(ids, rand);
     deckPos = 0;
   }

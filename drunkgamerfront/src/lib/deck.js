@@ -3,7 +3,7 @@
 
 const RULE = /^(person|group)_round_based:(\d+)$/;
 
-export const MAX_COPIES = 5;
+export const MAX_COPIES = 10;
 export const KINDS = ["chaos", "dare", "truth", "opinion", "power"];
 export const LIMITS = { title: 40, description: 160 };
 
@@ -29,10 +29,11 @@ export function deckRows(base, edits) {
     ...base.map((c) => (edits.edits[c.id] ? { ...c, ...edits.edits[c.id] } : c)),
     ...edits.custom,
   ];
-  const copiesOf = (id) => edits.copies[id] ?? 1;
-  const total = cards.reduce((n, c) => n + copiesOf(c.id), 0);
+  // A card's default count comes from cards.json (stacked duplicates), else 1.
+  const copiesOf = (card) => edits.copies[card.id] ?? card.copies ?? 1;
+  const total = cards.reduce((n, c) => n + copiesOf(c), 0);
   return cards.map((card) => {
-    const copies = copiesOf(card.id);
+    const copies = copiesOf(card);
     return {
       card,
       copies,
@@ -46,10 +47,10 @@ export function buildDeck(rows) {
   return rows.flatMap((r) => Array(r.copies).fill(r.card));
 }
 
-export function setCopies(edits, id, n) {
+export function setCopies(edits, id, n, defaultCopies = 1) {
   const copies = { ...edits.copies };
   const value = Math.max(0, Math.min(MAX_COPIES, Math.round(n)));
-  if (value === 1) delete copies[id];
+  if (value === defaultCopies) delete copies[id];
   else copies[id] = value;
   return { ...edits, copies };
 }

@@ -90,3 +90,10 @@ test("round advances after everyone has had a turn; group rules count down then"
   assert.equal(afterTwo.currentRound, 2);
   assert.equal(afterTwo.activeRules.length, 0);
 });
+
+test("a saved deck order with unknown card ids is reshuffled", () => {
+  const stale = { ...withPlayers("Jake"), deckOrder: [999, 2, 3, 4], deckPos: 0 };
+  const g = dealCard(stale, CARDS, opts());
+  assert.ok(CARDS.some((c) => c.id === g.currentCard.id));
+  assert.ok(g.deckOrder.every((id) => CARDS.some((c) => c.id === id)));
+});

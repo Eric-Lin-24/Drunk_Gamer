@@ -35,8 +35,8 @@ test("copies change odds; zero copies means zero odds", () => {
   assert.equal(by[3].odds, 0);
 });
 
-test("setCopies clamps to 0..5 and forgets the default of 1", () => {
-  assert.equal(setCopies(E, 2, 9).copies[2], 5);
+test("setCopies clamps to 0..10 and forgets the card's default", () => {
+  assert.equal(setCopies(E, 2, 99).copies[2], 10);
   assert.equal(setCopies(E, 2, -1).copies[2], 0);
   assert.deepEqual(setCopies(setCopies(E, 2, 3), 2, 1).copies, {});
 });
@@ -109,4 +109,17 @@ test("formatOdds", () => {
   assert.equal(formatOdds(0.0004), "<0.1%");
   assert.equal(formatOdds(0.00322), "0.3%");
   assert.equal(formatOdds(0.25), "25%");
+});
+
+test("stacked cards start at their copies from cards.json and odds follow", () => {
+  const base = [{ ...BASE[0] }, { ...BASE[1], copies: 3 }];
+  const rows = deckRows(base, E);
+  assert.deepEqual(rows.map((r) => r.copies), [1, 3]);
+  assert.equal(rows[1].odds, 3 / 4);
+  assert.deepEqual(buildDeck(rows).map((c) => c.id), [1, 2, 2, 2]);
+});
+
+test("setCopies forgets a value equal to the card's own default", () => {
+  assert.deepEqual(setCopies(setCopies(E, 2, 5, 3), 2, 3, 3).copies, {});
+  assert.equal(setCopies(E, 2, 1, 3).copies[2], 1);
 });

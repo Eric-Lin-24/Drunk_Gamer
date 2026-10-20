@@ -27,7 +27,10 @@ export function useDeck() {
     rows,
     cards,
     unique: rows.filter((r) => r.copies > 0).length,
-    setCopies: (id, n) => setEdits((e) => setCopies(e, id, n)),
+    setCopies: (id, n) => {
+      const card = rows.find((r) => r.card.id === id)?.card;
+      setEdits((e) => setCopies(e, id, n, card?.copies ?? 1));
+    },
     save: (draft) => setEdits(saveCard(baseCards, edits, draft)),
     restore: (id) => setEdits((e) => restoreCard(e, id)),
     remove: (id) => setEdits((e) => deleteCard(e, id)),
